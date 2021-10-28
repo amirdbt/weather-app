@@ -3,7 +3,7 @@ import { Title } from "../../components/title";
 import { makeStyles } from "@mui/styles";
 import { CircularProgress, Grid } from "@mui/material";
 import { useQuery } from "react-query";
-import { APIKEY, fetchData } from "../../services/apis";
+import { fetchData } from "../../services/apis";
 
 const Content = lazy(() => import("../../components/content"));
 const WeatherChart = lazy(() => import("../../components/chart"));
@@ -29,7 +29,7 @@ export const MainPage = () => {
   const [title, setTile] = useState("Kano, NG");
 
   //urls
-  const URL2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${values?.lat}&lon=${values?.lon}&appid=${APIKEY}`;
+  const URL2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${values?.lat}&lon=${values?.lon}&appid=${process.env.REACT_APP_APIKEY}`;
   const URL1 = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${values?.lat}&lon=${values?.lon}`;
 
   const data = useQuery(["data", URL1], () => fetchData(URL1), {
