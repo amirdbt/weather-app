@@ -1,12 +1,13 @@
-import React, { useState, useCallback } from "react";
-import { Content } from "../../components/content";
-import { FormInput } from "../../components/form";
+import React, { useState, useCallback, lazy, Suspense } from "react";
 import { Title } from "../../components/title";
 import { makeStyles } from "@mui/styles";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import { useQuery } from "react-query";
 import { APIKEY, fetchData } from "../../services/apis";
-import { WeatherChart } from "../../components/chart";
+
+const Content = lazy(() => import("../../components/content"));
+const WeatherChart = lazy(() => import("../../components/chart"));
+const FormInput = lazy(() => import("../../components/form"));
 
 const useStyles = makeStyles({
   content: {
@@ -114,20 +115,26 @@ export const MainPage = () => {
     <>
       <Title />
       <main className={classes.content}>
-        <FormInput setValues={handleValueChange} />
-        <Grid container spacing={2} sx={{ marginTop: "15px" }}>
-          <Grid item sx={12} md={6}>
-            <Content service="Met API" title={title} data={newData1} />
+        <Suspense fallback={<CircularProgress sx={{ marginLeft: "50%" }} />}>
+          <FormInput setValues={handleValueChange} />
+          <Grid container spacing={2} sx={{ marginTop: "15px" }}>
+            <Grid item sx={12} md={6}>
+              <Content service="Met API" title={title} data={newData1} />
+            </Grid>
+            <Grid item sx={12} md={6}>
+              <Content
+                data={newData2}
+                service="Open Weather API"
+                title={title}
+              />
+            </Grid>
           </Grid>
-          <Grid item sx={12} md={6}>
-            <Content data={newData2} service="Open Weather API" title={title} />
+          <Grid container sx={{ marginTop: "50px" }}>
+            <Grid item sx={12} md={12}>
+              <WeatherChart dataBar={dataBar} />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container sx={{ marginTop: "50px" }}>
-          <Grid item sx={12} md={12}>
-            <WeatherChart dataBar={dataBar} />
-          </Grid>
-        </Grid>
+        </Suspense>
       </main>
     </>
   );

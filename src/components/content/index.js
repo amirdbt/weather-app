@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import moment from "moment";
 
-export const Content = ({ data, service, title }) => {
+const Content = ({ data, service, title }) => {
   return (
     <>
       <Typography variant="body2" sx={{ marginBottom: 2 }}>
@@ -48,3 +48,5 @@ export const Content = ({ data, service, title }) => {
     </>
   );
 };
+
+export default Content;

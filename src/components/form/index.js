@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const FormInput = memo(({ setValues }) => {
+const FormInput = memo(({ setValues }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [dataOptions, setDataOptions] = useState([]);
@@ -89,3 +89,5 @@ export const FormInput = memo(({ setValues }) => {
     </Box>
   );
 });
+
+export default FormInput;

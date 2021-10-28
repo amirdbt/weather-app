@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-export const WeatherChart = ({ dataBar }) => {
+const WeatherChart = ({ dataBar }) => {
   return (
     <div>
       <Typography variant="body2" sx={{ marginBottom: "15px" }}>
@@ -12,3 +12,5 @@ export const WeatherChart = ({ dataBar }) => {
     </div>
   );
 };
+
+export default WeatherChart;
