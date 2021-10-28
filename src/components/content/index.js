@@ -2,10 +2,8 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import moment from "moment";
-import "./content.css";
 
 export const Content = ({ data, service, title }) => {
-  console.log("dataaaaaaa", data);
   return (
     <>
       <Typography variant="body2" sx={{ marginBottom: 2 }}>

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 export const FormInput = memo(({ setValues }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [dataOptions, setDataOptions] = useState([]);
   const [city, setCity] = useState("");
   const loading = open && dataOptions.length === 0;
